@@ -5,12 +5,12 @@ import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
-  ShoppingCart,
   Instagram,
   Twitter,
   Facebook,
   Menu,
   X,
+  PhoneCall,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useScroll, motion } from "motion/react";
@@ -54,10 +54,10 @@ export const HeroHeader = () => {
           {/* Desktop Nav - Left */}
           <div className="hidden lg:flex items-center gap-8 text-xs">
             <Link href="#" className="text-gold-hover text-white">
-              SHOP
+              Flights
             </Link>
             <Link href="#" className="text-gold-hover text-white">
-              PLAN MY KITCHEN
+              Services
             </Link>
           </div>
 
@@ -69,10 +69,10 @@ export const HeroHeader = () => {
           {/* Desktop Nav - Right */}
           <div className="hidden lg:flex items-center gap-8 text-xs">
             <Link href="#" className="text-gold-hover text-white">
-              ABOUT US
+              Find Us
             </Link>
             <Link href="#" className="text-gold-hover text-white">
-              GALLERY
+              Reviews
             </Link>
           </div>
 
@@ -80,10 +80,10 @@ export const HeroHeader = () => {
           <div className="flex items-center gap-3">
             <Button
               size="sm"
-              className="hidden sm:flex rounded-full px-4 bg-transparent text-white text-xs border border-white hover:text-[#C8A74B] hover:border-[#C8A74B] hover:bg-transparent transition-colors"
+              className="hidden sm:flex rounded-full px-4 bg-transparent text-white text-xs border border-white hover:text-[#3B6095] hover:border-[#3B6095] hover:bg-transparent transition-colors"
             >
-              MY ORDER
-              <ShoppingCart className="mr-2 ml-2 h-4 w-4" />
+              Contact Us
+              <PhoneCall className="mr-2 ml-2 h-4 w-4" />
             </Button>
             <button
               className="lg:hidden"
@@ -112,24 +112,24 @@ export const HeroHeader = () => {
           >
             <div className="mt-4 flex flex-col items-center gap-4 text-sm ">
               <Link href="#" className="hover:text-foreground">
-                SHOP
+                Flights
               </Link>
               <Link href="#" className="hover:text-foreground">
-                PLAN MY KITCHEN
+                Services
               </Link>
               <Link href="#" className="hover:text-foreground">
-                ABOUT US
+                Find Us
               </Link>
               <Link href="#" className="hover:text-foreground">
-                GALLERY
+                Reviews
               </Link>
               <Button
                 variant="outline"
                 size="sm"
                 className="rounded-full px-4 bg-transparent text-white text-xs"
               >
-                MY ORDER
-                <ShoppingCart className="mr-2 ml-2 h-4 w-4" />
+                CONTACT US
+                <PhoneCall className="mr-2 ml-2 h-4 w-4" />
               </Button>
             </div>
           </motion.div>

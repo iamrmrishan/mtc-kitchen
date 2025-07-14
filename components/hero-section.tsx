@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import FlightBookingForm from "./flight-booking-form";
 
-const images = ["/hero.png", "/hero2.png", "/hero.png"];
+const images = ["/hero.jpg", "/hero2.jpg", "/hero3.jpg"];
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
@@ -55,21 +54,16 @@ export default function HeroSection() {
         <div className="relative z-10 flex h-screen items-center justify-center">
           <div className="text-center px-6 max-w-2xl">
             <p className="mb-2 text-xs text-white/80 tracking-wide uppercase">
-              Design and order your new kitchen online today
+             plan your journey today
             </p>
             <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight">
-              Bespoke & made to measure
+              Book Your Trip with
               <br />
-              handmade kitchen design
+              SKYRIM TRAVELS
             </h1>
 
             <div className="mt-8">
-              <Button
-                asChild
-                className="rounded-full btn-gold px-6 py-4 text-white text-xs"
-              >
-                <Link href="#link">ORDER NOW</Link>
-              </Button>
+ <FlightBookingForm></FlightBookingForm>
             </div>
 
             {/* Dot Indicators */}

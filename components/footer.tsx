@@ -11,7 +11,7 @@ export default function Footer() {
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero2.png" // replace with your image
+          src="/hero4.jpg" // replace with your image
           alt="Footer background"
           fill
           className="object-cover opacity-20"
@@ -28,58 +28,37 @@ export default function Footer() {
         </div>
 
         {/* Footer Columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-10 gap-x-8 text-sm text-gray-300">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-10 gap-x-8 text-sm text-gray-300">
           {/* About */}
           <div className="space-y-3 text-left">
-            <p className="font-semibold text-white">About</p>
+            <p className="font-semibold text-white">SKYRIM TRAVELS</p>
             <Link href="#" className="text-gold-hover block text-xs">
-              SHOP
-            </Link>
-            <Link href="#" className="text-gold-hover block text-xs">
-              PLAN MY KITCHEN
-            </Link>
-            <Link href="#" className="text-gold-hover block text-xs">
-              ABOUT US
-            </Link> 
-            <Link href="#" className="text-gold-hover block text-xs">
-              GALLERY
+              Skyrim Travels Private Limited is a a trusted and dynamic travel
+              agency based in Sri Lanka, committed to making your travel
+              experiences exceptional.
             </Link>
           </div>
 
           {/* Service */}
           <div className="space-y-3 text-left">
-            <p className="font-semibold text-white">Service</p>
+            <p className="font-semibold text-white">Our Contact Info</p>
             <Link href="#" className="text-gold-hover block text-xs">
-              FAQ
+              +94772670638, +94768506008
             </Link>
             <Link href="#" className="text-gold-hover block text-xs">
-              CONTACT
+              info@skyrimtravels.lk
             </Link>
             <Link href="#" className="text-gold-hover block text-xs">
-              HOW TO BUY
+              No 133/8. Batakettara,
             </Link>
             <Link href="#" className="text-gold-hover block text-xs">
-              DOWNLOADS
-            </Link>
-          </div>
-
-          {/* Info */}
-          <div className="space-y-3 text-left">
-            <p className="font-semibold text-white">Info</p>
-            <Link href="#" className="text-gold-hover block text-xs">
-              DELIVERY
-            </Link>
-            <Link href="#" className="text-gold-hover block text-xs">
-              TERMS
-            </Link>
-            <Link href="#" className="text-gold-hover block text-xs">
-              PRIVACY
+              Madapatha, Sri Lanka
             </Link>
           </div>
 
           {/* Follow */}
           <div className="space-y-3 text-center sm:text-left">
-            <p className="font-semibold text-white">Follow</p>
+            <p className="font-semibold text-white">Follow Us</p>
             <div className="flex justify-center sm:justify-start gap-3 pt-1">
               <Link
                 href="#"
@@ -108,9 +87,9 @@ export default function Footer() {
 
         {/* Footer Bottom */}
         <div className="mt-12 border-t border-white/20 pt-6 text-xs text-muted-foreground">
-          <p>Copyright Online MTC Home Kitchens 2018 - All rights reserved.</p>
+          <p>Copyright Online SKYRIM TRAVELS 2025 - All rights reserved.</p>
           <p className="mt-1">
-            Responsive website design, Development & Hosting by mtc.
+            Responsive website design, Development & Hosting by iamrmrishan(Github).
           </p>
         </div>
       </div>

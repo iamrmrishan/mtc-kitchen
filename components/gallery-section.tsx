@@ -24,9 +24,9 @@ export default function GallerySection() {
   return (
     <section className="w-full py-12 px-4 md:px-8 bg-white">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-lg md:text-xl font-semibold mb-8">
-          Customer Gallery
-        </h2>
+       <h1 className="text-3xl md:text-4xl font-bold text-black leading-snug mb-4">
+          Customer Reviews Gallery
+        </h1>
 
         {/* Mobile Carousel */}
         <div className="flex gap-2 overflow-x-auto scroll-smooth sm:hidden mb-8">

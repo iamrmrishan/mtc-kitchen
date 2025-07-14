@@ -117,15 +117,15 @@
 }
 
 .btn-gold {
-  background-color: #D4B254;
+  background-color: #2B4F81; /* golden blue base */
 }
 
 .btn-gold:hover {
-  background-color: #C8A74B;
+  background-color: #3B6095; /* hover with a warmer, slightly lighter blue */
 }
 
 .text-gold-hover:hover {
-  color: #C8A74B;
+  color: #3B6095; /* same as button hover for consistency */
 }
 
 

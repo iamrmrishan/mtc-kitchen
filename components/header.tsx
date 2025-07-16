@@ -56,7 +56,7 @@ export const HeroHeader = () => {
             <Link href="#" className="text-gold-hover text-white">
               Flights
             </Link>
-            <Link href="#" className="text-gold-hover text-white">
+            <Link href="#services" className="text-gold-hover text-white">
               Services
             </Link>
           </div>
@@ -68,10 +68,10 @@ export const HeroHeader = () => {
 
           {/* Desktop Nav - Right */}
           <div className="hidden lg:flex items-center gap-8 text-xs">
-            <Link href="#" className="text-gold-hover text-white">
+            <Link href="#findus" className="text-gold-hover text-white">
               Find Us
             </Link>
-            <Link href="#" className="text-gold-hover text-white">
+            <Link href="#reviews" className="text-gold-hover text-white">
               Reviews
             </Link>
           </div>
@@ -83,7 +83,7 @@ export const HeroHeader = () => {
               className="hidden sm:flex rounded-full px-4 bg-transparent text-white text-xs border border-white hover:text-[#3B6095] hover:border-[#3B6095] hover:bg-transparent transition-colors"
             >
               Contact Us
-              <PhoneCall className="mr-2 ml-2 h-4 w-4" />
+              <PhoneCall href="#contact" className="mr-2 ml-2 h-4 w-4" />
             </Button>
             <button
               className="lg:hidden"

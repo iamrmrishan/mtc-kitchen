@@ -102,38 +102,38 @@ function AirportSelector({
       <DrawerTrigger asChild>
         <Button
           variant="outline"
-          className="w-full justify-start text-left font-normal bg-white border-gray-200 hover:bg-gray-50 h-12"
+          className="w-full justify-start text-left font-normal bg-white border-gray-200 hover:bg-gray-50 h-10"
         >
           <MapPin className="mr-2 h-4 w-4" />
           {value ? (
-            <div className="flex flex-col">
+            <div className="flex items-center gap-2">
               <span className="font-medium">{value.code}</span>
               <span className="text-xs text-muted-foreground">
                 {value.city}
               </span>
             </div>
           ) : (
-            <span className="text-muted-foreground">{placeholder}</span>
+            <span className="text-muted-foreground text-sm">{placeholder}</span>
           )}
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>{placeholder}</DrawerTitle>
+        <DrawerHeader className="pb-3">
+          <DrawerTitle className="text-lg">{placeholder}</DrawerTitle>
         </DrawerHeader>
         <div className="px-4 pb-4">
           <Input
             placeholder="Search airports..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="mb-4"
+            className="mb-3 h-9"
           />
-          <div className="max-h-60 overflow-y-auto space-y-2">
+          <div className="max-h-60 overflow-y-auto space-y-1">
             {filteredAirports.map((airport) => (
               <Button
                 key={airport.code}
                 variant="ghost"
-                className="w-full justify-start text-left h-auto p-3"
+                className="w-full justify-start text-left h-auto p-2"
                 onClick={() => {
                   onSelect(airport);
                   setOpen(false);
@@ -174,19 +174,19 @@ function DateSelector({ date, onSelect, placeholder }: DateSelectorProps) {
       <DrawerTrigger asChild>
         <Button
           variant="outline"
-          className="w-full justify-start text-left font-normal bg-white border-gray-200 hover:bg-gray-50 h-12"
+          className="w-full justify-start text-left font-normal bg-white border-gray-200 hover:bg-gray-50 h-10"
         >
           <CalendarDays className="mr-2 h-4 w-4" />
           {date ? (
-            format(date, "PPP")
+            <span className="text-sm">{format(date, "MMM dd, yyyy")}</span>
           ) : (
-            <span className="text-muted-foreground">{placeholder}</span>
+            <span className="text-muted-foreground text-sm">{placeholder}</span>
           )}
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>{placeholder}</DrawerTitle>
+        <DrawerHeader className="pb-3">
+          <DrawerTitle className="text-lg">{placeholder}</DrawerTitle>
         </DrawerHeader>
         <div className="px-4 pb-4 flex justify-center">
           <Calendar
@@ -199,6 +199,7 @@ function DateSelector({ date, onSelect, placeholder }: DateSelectorProps) {
             disabled={(date) => date < new Date()}
             initialFocus
             required={false}
+            className="rounded-md border"
           />
         </div>
       </DrawerContent>
@@ -227,45 +228,42 @@ function PassengerSelector({
       <DrawerTrigger asChild>
         <Button
           variant="outline"
-          className="w-full justify-start text-left font-normal bg-white border-gray-200 hover:bg-gray-50"
+          className="w-full justify-start text-left font-normal bg-white border-gray-200 hover:bg-gray-50 h-10"
         >
           <Users className="mr-2 h-4 w-4 text-gray-500" />
-          <div className="flex flex-col">
-            <span className="font-medium text-gray-900">
+          <div className="flex items-center gap-2">
+            <span className="font-medium text-gray-900 text-sm">
               {totalPassengers}{" "}
               {totalPassengers === 1 ? "Passenger" : "Passengers"}
             </span>
             <span className="text-xs text-gray-500">
-              {adults} Adult{adults !== 1 ? "s" : ""}
+              ({adults} Adult{adults !== 1 ? "s" : ""}
               {childPassengers > 0
                 ? `, ${childPassengers} Child${
                     childPassengers !== 1 ? "ren" : ""
                   }`
                 : ""}
+              )
             </span>
           </div>
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="pb-4">
-          <DrawerTitle className="text-xl font-semibold">
-            Select Passengers
-          </DrawerTitle>
+        <DrawerHeader className="pb-3">
+          <DrawerTitle className="text-lg">Select Passengers</DrawerTitle>
         </DrawerHeader>
-        <div className="px-4 pb-6 space-y-6">
+        <div className="px-4 pb-4 space-y-4">
           {/* Adults */}
-          <div className="flex items-center justify-between py-3">
+          <div className="flex items-center justify-between py-2">
             <div>
-              <span className="text-base font-medium text-gray-900">
-                Adults
-              </span>
-              <p className="text-sm text-gray-500">12+ years</p>
+              <span className="text-sm font-medium text-gray-900">Adults</span>
+              <p className="text-xs text-gray-500">12+ years</p>
             </div>
             <div className="flex items-center gap-3">
               <Button
                 variant="outline"
                 size="icon"
-                className="h-8 w-8 rounded-full border-gray-300 bg-transparent"
+                className="h-8 w-8 rounded-full"
                 onClick={() => onAdultsChange(Math.max(1, adults - 1))}
                 disabled={adults <= 1}
               >
@@ -275,7 +273,7 @@ function PassengerSelector({
               <Button
                 variant="outline"
                 size="icon"
-                className="h-8 w-8 rounded-full border-gray-300 bg-transparent"
+                className="h-8 w-8 rounded-full"
                 onClick={() => onAdultsChange(Math.min(9, adults + 1))}
                 disabled={adults >= 9}
               >
@@ -285,18 +283,18 @@ function PassengerSelector({
           </div>
 
           {/* Children */}
-          <div className="flex items-center justify-between py-3">
+          <div className="flex items-center justify-between py-2">
             <div>
-              <span className="text-base font-medium text-gray-900">
+              <span className="text-sm font-medium text-gray-900">
                 Children
               </span>
-              <p className="text-sm text-gray-500">2-11 years</p>
+              <p className="text-xs text-gray-500">2-11 years</p>
             </div>
             <div className="flex items-center gap-3">
               <Button
                 variant="outline"
                 size="icon"
-                className="h-8 w-8 rounded-full border-gray-300 bg-transparent"
+                className="h-8 w-8 rounded-full"
                 onClick={() =>
                   onChildPassengersChange(Math.max(0, childPassengers - 1))
                 }
@@ -310,7 +308,7 @@ function PassengerSelector({
               <Button
                 variant="outline"
                 size="icon"
-                className="h-8 w-8 rounded-full border-gray-300 bg-transparent"
+                className="h-8 w-8 rounded-full"
                 onClick={() =>
                   onChildPassengersChange(Math.min(9, childPassengers + 1))
                 }
@@ -322,7 +320,7 @@ function PassengerSelector({
           </div>
 
           <Button
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2"
             onClick={() => setOpen(false)}
           >
             Done
@@ -370,41 +368,40 @@ export default function FlightBookingForm() {
   };
 
   return (
+    <section id="reviews">
     <Drawer>
       <DrawerTrigger asChild>
-          <Button
-              className="btn-gold text-white rounded-full px-6 py-2 text-sm"
-            >
-              Check Flights
-            </Button>
+        <Button className="btn-gold text-white rounded-full px-6 py-2 text-sm">
+          Get a Quote
+        </Button>
       </DrawerTrigger>
       <DrawerContent className="max-h-[95vh] bg-white">
-        <DrawerHeader className="border-b border-gray-100 pb-4">
-          <DrawerTitle className="text-2xl font-bold text-center text-gray-900">
-            Book Your Flight
-          </DrawerTitle>
-            <p
+        <DrawerHeader className="border-b border-gray-100 pb-3">
+          <p
             style={{ color: "#3B6095" }}
-            className="text-xs tracking-wider uppercase mb-2"
+            className="text-xs tracking-wider uppercase mb-1"
           >
             Find the perfect flight for your journey
           </p>
+          {/* <DrawerTitle className="text-xl font-bold text-center text-gray-900">
+            Book Your Flight
+          </DrawerTitle> */}
         </DrawerHeader>
-        <div className="px-6 pb-6 overflow-y-auto bg-gray-50">
-          <Card className="border-0 shadow-none bg-transparent mt-4">
+        <div className="px-4 pb-4 overflow-y-auto bg-gray-50">
+          <Card className="border-0 shadow-none bg-transparent mt-3">
             <CardContent className="p-0">
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Trip Type */}
-                <div className="bg-white p-6 border border-gray-100">
-                  <Label className="text-base font-semibold text-gray-900 mb-4 block">
+                <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                  <Label className="text-sm font-semibold text-gray-900 mb-3 block">
                     Trip Type
                   </Label>
                   <RadioGroup
                     value={tripType}
                     onValueChange={setTripType}
-                    className="flex gap-8"
+                    className="flex gap-6"
                   >
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="roundtrip"
                         id="roundtrip"
@@ -412,12 +409,12 @@ export default function FlightBookingForm() {
                       />
                       <Label
                         htmlFor="roundtrip"
-                        className="text-gray-700 font-medium cursor-pointer"
+                        className="text-sm text-gray-700 font-medium cursor-pointer"
                       >
                         Round Trip
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="oneway"
                         id="oneway"
@@ -425,7 +422,7 @@ export default function FlightBookingForm() {
                       />
                       <Label
                         htmlFor="oneway"
-                        className="text-gray-700 font-medium cursor-pointer"
+                        className="text-sm text-gray-700 font-medium cursor-pointer"
                       >
                         One Way
                       </Label>
@@ -434,12 +431,12 @@ export default function FlightBookingForm() {
                 </div>
 
                 {/* From and To */}
-                <div className="bg-white p-6 border border-gray-100">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-3">
+                <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
                       <Label
                         htmlFor="from"
-                        className="text-base font-semibold text-gray-900"
+                        className="text-sm font-semibold text-gray-900"
                       >
                         From
                       </Label>
@@ -449,10 +446,10 @@ export default function FlightBookingForm() {
                         placeholder="Select departure airport"
                       />
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       <Label
                         htmlFor="to"
-                        className="text-base font-semibold text-gray-900"
+                        className="text-sm font-semibold text-gray-900"
                       >
                         To
                       </Label>
@@ -466,12 +463,12 @@ export default function FlightBookingForm() {
                 </div>
 
                 {/* Dates */}
-                <div className="bg-white p-6 border border-gray-100">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-3">
+                <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
                       <Label
                         htmlFor="departure"
-                        className="text-base font-semibold text-gray-900"
+                        className="text-sm font-semibold text-gray-900"
                       >
                         Departure Date
                       </Label>
@@ -482,10 +479,10 @@ export default function FlightBookingForm() {
                       />
                     </div>
                     {tripType === "roundtrip" && (
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         <Label
                           htmlFor="return"
-                          className="text-base font-semibold text-gray-900"
+                          className="text-sm font-semibold text-gray-900"
                         >
                           Return Date
                         </Label>
@@ -500,12 +497,12 @@ export default function FlightBookingForm() {
                 </div>
 
                 {/* Passengers and Class */}
-                <div className="bg-white p-6 border border-gray-100">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-3">
+                <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
                       <Label
                         htmlFor="passengers"
-                        className="text-base font-semibold text-gray-900"
+                        className="text-sm font-semibold text-gray-900"
                       >
                         Passengers
                       </Label>
@@ -516,10 +513,10 @@ export default function FlightBookingForm() {
                         onChildPassengersChange={setChildren}
                       />
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       <Label
                         htmlFor="class"
-                        className="text-base font-semibold text-gray-900"
+                        className="text-sm font-semibold text-gray-900"
                       >
                         Class
                       </Label>
@@ -527,7 +524,7 @@ export default function FlightBookingForm() {
                         value={travelClass}
                         onValueChange={setTravelClass}
                       >
-                        <SelectTrigger className="bg-white border-gray-200 hover:bg-gray-50">
+                        <SelectTrigger className="bg-white border-gray-200 hover:bg-gray-50 h-10">
                           <SelectValue placeholder="Select class" />
                         </SelectTrigger>
                         <SelectContent>
@@ -544,15 +541,15 @@ export default function FlightBookingForm() {
                 </div>
 
                 {/* Personal Information */}
-                <div className="bg-white p-6 border border-gray-100">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                  <h3 className="text-sm font-semibold text-gray-900 mb-3">
                     Personal Information
                   </h3>
-                  <div className="space-y-4">
-                    <div className="space-y-2">
+                  <div className="space-y-3">
+                    <div className="space-y-1">
                       <Label
                         htmlFor="name"
-                        className="text-base font-medium text-gray-900"
+                        className="text-sm font-medium text-gray-900"
                       >
                         Full Name *
                       </Label>
@@ -562,16 +559,16 @@ export default function FlightBookingForm() {
                         placeholder="Enter your full name"
                         value={passengerName}
                         onChange={(e) => setPassengerName(e.target.value)}
-                        className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-12"
+                        className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-10"
                         required
                       />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div className="space-y-1">
                         <Label
                           htmlFor="email"
-                          className="text-base font-medium text-gray-900"
+                          className="text-sm font-medium text-gray-900"
                         >
                           Email Address *
                         </Label>
@@ -581,15 +578,15 @@ export default function FlightBookingForm() {
                           placeholder="Enter your email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-12"
+                          className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-10"
                           required
                         />
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-1">
                         <Label
                           htmlFor="mobile"
-                          className="text-base font-medium text-gray-900"
+                          className="text-sm font-medium text-gray-900"
                         >
                           Mobile Number *
                         </Label>
@@ -599,16 +596,16 @@ export default function FlightBookingForm() {
                           placeholder="Enter your mobile number"
                           value={mobile}
                           onChange={(e) => setMobile(e.target.value)}
-                          className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-12"
+                          className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-10"
                           required
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                       <Label
                         htmlFor="details"
-                        className="text-base font-medium text-gray-900"
+                        className="text-sm font-medium text-gray-900"
                       >
                         Additional Details
                       </Label>
@@ -617,10 +614,10 @@ export default function FlightBookingForm() {
                         placeholder="Any special requests, dietary requirements, or additional information..."
                         value={additionalDetails}
                         onChange={(e) => setAdditionalDetails(e.target.value)}
-                        className="w-full min-h-[100px] px-3 py-2 bg-white border border-gray-200 rounded-md hover:border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 resize-none"
-                        rows={4}
+                        className="w-full min-h-[70px] px-3 py-2 text-sm bg-white border border-gray-200 rounded-md hover:border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 resize-none"
+                        rows={3}
                       />
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs text-gray-500">
                         Optional - Let us know about any special requirements
                       </p>
                     </div>
@@ -628,19 +625,18 @@ export default function FlightBookingForm() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4 pt-4">
+                <div className="flex gap-3 pt-2">
                   <Button
                     type="submit"
-                    className="btn-gold text-white rounded-full px-6 py-2 text-sm"
-                    size="lg"
+                    className="flex-1 btn-gold text-white rounded-full px-6 py-2 text-sm"
+                    size="default"
                   >
                     Search Flights
                   </Button>
                   <DrawerClose asChild>
                     <Button
                       variant="outline"
-                      size="lg"
-                      className=" rounded-full px-6 py-2 text-sm"
+                      className="px-6 py-2 text-sm rounded-full"
                     >
                       Cancel
                     </Button>
@@ -652,5 +648,6 @@ export default function FlightBookingForm() {
         </div>
       </DrawerContent>
     </Drawer>
+    </section>
   );
 }

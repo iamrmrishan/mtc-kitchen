@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black text-white py-16 px-4">
+    <footer id="contact" className="relative bg-black text-white py-16 px-4">
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
         <Image

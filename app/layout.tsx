@@ -3,7 +3,6 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { HeroHeader } from "@/components/header";
 import FooterSection from "@/components/footer";
-import WhatsappWrapper from "@/components/whatsapp-chat-wrapper";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -27,7 +26,6 @@ export default function RootLayout({
         <HeroHeader></HeroHeader>
         {children}
         <div id="contact">
-         <WhatsappWrapper/>
           <FooterSection></FooterSection>
         </div>
       </body>

@@ -4,6 +4,7 @@
 import * as React from "react";
 import { CalendarDays, MapPin, Minus, Plus, Users } from "lucide-react";
 import { format } from "date-fns";
+import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -308,6 +309,9 @@ export default function FlightBookingForm() {
   const [mobile, setMobile] = React.useState("");
   const [additionalDetails, setAdditionalDetails] = React.useState("");
   const [airports, setAirports] = React.useState<Airport[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [showModal, setShowModal] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   // Load airports from JSON file
   React.useEffect(() => {
@@ -350,14 +354,20 @@ export default function FlightBookingForm() {
     loadAirports();
   }, []);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    console.log({
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    const inputs = {
       tripType,
-      fromAirport,
-      toAirport,
-      departureDate,
-      returnDate,
+      fromAirport: fromAirport
+        ? `${fromAirport.code} - ${fromAirport.name}, ${fromAirport.city}`
+        : "",
+      toAirport: toAirport
+        ? `${toAirport.code} - ${toAirport.name}, ${toAirport.city}`
+        : "",
+      departureDate: departureDate ? format(departureDate, "MMM dd, yyyy") : "",
+      returnDate: returnDate ? format(returnDate, "MMM dd, yyyy") : "",
       adults,
       children,
       travelClass,
@@ -365,7 +375,39 @@ export default function FlightBookingForm() {
       email,
       mobile,
       additionalDetails,
-    });
+    };
+
+    axios({
+      method: "POST",
+      url: "https://formbold.com/s/9mNpP",
+      data: inputs,
+    })
+      .then((r) => {
+        if (r.status === 201) {
+          console.log(r.status);
+          setShowModal(true);
+          // Reset form
+          setTripType("roundtrip");
+          setFromAirport(null);
+          setToAirport(null);
+          setDepartureDate(undefined);
+          setReturnDate(undefined);
+          setAdults(1);
+          setChildren(0);
+          setTravelClass("");
+          setPassengerName("");
+          setEmail("");
+          setMobile("");
+          setAdditionalDetails("");
+        }
+      })
+      .catch((r) => {
+        console.log(r);
+        alert("There was an error submitting your request. Please try again.");
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -631,8 +673,9 @@ export default function FlightBookingForm() {
                       type="submit"
                       className="flex-1 btn-gold text-white rounded-full px-6 py-2 text-sm"
                       size="default"
+                      disabled={isSubmitting}
                     >
-                      Request a Quote
+                      {isSubmitting ? "Submitting..." : "Request a Quote"}
                     </Button>
                     <DrawerClose asChild>
                       <Button

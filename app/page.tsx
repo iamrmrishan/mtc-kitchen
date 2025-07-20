@@ -3,6 +3,7 @@ import GallerySection from "@/components/gallery-section";
 import HeroSection from "@/components/hero-section";
 import MidHeroSection from "@/components/mid-hero-section";
 import TestimonialsSection from "@/components/testimonials-section";
+import WhatsappWrapper from "@/components/whatsapp-chat-wrapper";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <TestimonialCarousel />
         <GallerySection></GallerySection>
       </div>
+        <WhatsappWrapper/>
     </div>
   );
 }

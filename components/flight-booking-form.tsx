@@ -26,50 +26,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-// Mock airport data
-const airports = [
-  {
-    code: "JFK",
-    name: "John F. Kennedy International Airport",
-    city: "New York",
-  },
-  {
-    code: "LAX",
-    name: "Los Angeles International Airport",
-    city: "Los Angeles",
-  },
-  { code: "ORD", name: "O'Hare International Airport", city: "Chicago" },
-  { code: "MIA", name: "Miami International Airport", city: "Miami" },
-  {
-    code: "SFO",
-    name: "San Francisco International Airport",
-    city: "San Francisco",
-  },
-  {
-    code: "SEA",
-    name: "Seattle-Tacoma International Airport",
-    city: "Seattle",
-  },
-  { code: "DEN", name: "Denver International Airport", city: "Denver" },
-  {
-    code: "ATL",
-    name: "Hartsfield-Jackson Atlanta International Airport",
-    city: "Atlanta",
-  },
-  { code: "BOS", name: "Logan International Airport", city: "Boston" },
-  { code: "LAS", name: "McCarran International Airport", city: "Las Vegas" },
-  {
-    code: "PHX",
-    name: "Phoenix Sky Harbor International Airport",
-    city: "Phoenix",
-  },
-  {
-    code: "IAH",
-    name: "George Bush Intercontinental Airport",
-    city: "Houston",
-  },
-];
-
 interface Airport {
   code: string;
   name: string;
@@ -80,12 +36,14 @@ interface AirportSelectorProps {
   value: Airport | null;
   onSelect: (airport: Airport) => void;
   placeholder: string;
+  airports: Airport[];
 }
 
 function AirportSelector({
   value,
   onSelect,
   placeholder,
+  airports,
 }: AirportSelectorProps) {
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
@@ -348,6 +306,48 @@ export default function FlightBookingForm() {
   const [email, setEmail] = React.useState("");
   const [mobile, setMobile] = React.useState("");
   const [additionalDetails, setAdditionalDetails] = React.useState("");
+  const [airports, setAirports] = React.useState<Airport[]>([]);
+
+  // Load airports from JSON file
+  React.useEffect(() => {
+    const loadAirports = async () => {
+      try {
+        const response = await fetch("/airports.json");
+        const airportsData = await response.json();
+
+        // Convert the JSON structure to our Airport interface
+        // Filter to only include airports with IATA codes (major airports)
+        const airportMap = new Map<string, Airport>();
+
+        Object.values(airportsData)
+          .filter((airport: any) => airport.iata && airport.iata.length === 3)
+          .forEach((airport: any) => {
+            const airportData: Airport = {
+              code: airport.iata,
+              name: airport.name,
+              city: airport.city,
+            };
+
+            // Only keep the first occurrence of each IATA code
+            if (!airportMap.has(airport.iata)) {
+              airportMap.set(airport.iata, airportData);
+            }
+          });
+
+        const formattedAirports: Airport[] = Array.from(
+          airportMap.values()
+        ).sort((a, b) => a.city.localeCompare(b.city));
+
+        setAirports(formattedAirports);
+      } catch (error) {
+        console.error("Failed to load airports:", error);
+        // Fallback to empty array if loading fails
+        setAirports([]);
+      }
+    };
+
+    loadAirports();
+  }, []);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -442,6 +442,7 @@ export default function FlightBookingForm() {
                           value={fromAirport}
                           onSelect={setFromAirport}
                           placeholder="Select departure airport"
+                          airports={airports}
                         />
                       </div>
                       <div className="space-y-2">
@@ -455,6 +456,7 @@ export default function FlightBookingForm() {
                           value={toAirport}
                           onSelect={setToAirport}
                           placeholder="Select destination airport"
+                          airports={airports}
                         />
                       </div>
                     </div>
@@ -629,7 +631,7 @@ export default function FlightBookingForm() {
                       className="flex-1 btn-gold text-white rounded-full px-6 py-2 text-sm"
                       size="default"
                     >
-                      Search Flights
+                      Request a Quote
                     </Button>
                     <DrawerClose asChild>
                       <Button

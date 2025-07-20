@@ -21,19 +21,73 @@ const galleryImages = [
   "/review-6.jpg",
   "/review-7.jpg",
   "/review-8.jpg",
+  "/review-9.jpg",
+  "/review-10.jpg",
+  "/review-11.jpg",
+  "/review-12.jpg",
+  "/review-14.jpg",
+  "/review-15.jpg",
+  "/review-16.jpg",
+  "/review-17.jpg",
+  "/review-18.jpg",
+  "/review-19.jpg",
+  "/review-20.jpg",
+  "/review-21.jpg",
+  "/review-22.jpg",
+  "/review-23.jpg",
+  "/review-24.jpg",
+  "/review-26.jpg",
+  "/review-27.jpg",
+  "/review-28.jpg",
+  "/review-29.jpg",
+  "/review-30.jpg",
+  "/review-31.jpg",
+  "/review-32.jpg",
+  "/review-33.jpg",
+  "/review-34.jpg",
+  "/review-35.jpg",
+  "/review-36.jpg",
+  "/review-38.jpg",
+  "/review-39.jpg",
+  "/review-40.jpg",
+  "/review-41.jpg",
+  "/review-42.jpg",
+  "/review-43.jpg",
+  "/review-44.jpg",
+  "/review-45.jpg",
+  "/review-46.jpg",
+  "/review-47.jpg",
+  "/review-48.jpg",
+  "/review-50.jpg",
+  "/review-51.jpg",
+  "/review-52.jpg",
+  "/review-53.jpg",
+  "/review-54.jpg",
+  "/review-55.jpg",
+  "/review-56.jpg",
+  "/review-57.jpg",
+  "/review-58.jpg",
+  "/review-59.jpg",
 ];
 
 export default function GallerySection() {
   const [visibleCount, setVisibleCount] = useState(4);
-  const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  );
+  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
 
-  const showMore = () => setVisibleCount(galleryImages.length);
-  const showLess = () => setVisibleCount(4);
+  const showMore = () => {
+    const newCount = Math.min(visibleCount + 4, galleryImages.length);
+    setVisibleCount(newCount);
+  };
+
+  const showLess = () => {
+    const newCount = Math.max(visibleCount - 4, 4);
+    setVisibleCount(newCount);
+  };
 
   return (
-    <section id="reviews" className="w-full py-12 px-4 md:px-8 bg-white">
+    <section
+      className="w-full py-6 sm:py-12 px-4 md:px-8 bg-white"
+    >
       <div className="max-w-6xl mx-auto text-center">
         <p
           style={{ color: "#3B6095" }}
@@ -96,20 +150,21 @@ export default function GallerySection() {
         </div>
 
         {/* View More / Less Buttons (Tablet/Desktop only) */}
-        <div className="hidden sm:block">
-          {visibleCount < galleryImages.length ? (
-            <Button
-              onClick={showMore}
-              className="btn-gold text-white rounded-full px-6 py-2 text-sm"
-            >
-              View More
-            </Button>
-          ) : (
+        <div className="hidden sm:flex justify-center gap-4">
+          {visibleCount > 4 && (
             <Button
               onClick={showLess}
               className="btn-gold text-white rounded-full px-6 py-2 text-sm"
             >
               View Less
+            </Button>
+          )}
+          {visibleCount < galleryImages.length && (
+            <Button
+              onClick={showMore}
+              className="btn-gold text-white rounded-full px-6 py-2 text-sm"
+            >
+              View More
             </Button>
           )}
         </div>

@@ -11,7 +11,7 @@ const features = [
 
 export default function MidHeroSection() {
   return (
-    <section id="services" className="w-full m-0 p-0">
+    <section className="w-full m-0 p-0">
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full m-0 p-0">
         {/* Image side - hidden on mobile */}
         <div className="hidden lg:block w-full h-full">

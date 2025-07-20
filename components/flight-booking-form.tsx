@@ -369,285 +369,283 @@ export default function FlightBookingForm() {
 
   return (
     <section id="reviews">
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button className="btn-gold text-white rounded-full px-6 py-2 text-sm">
-          Get a Quote
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent className="max-h-[95vh] bg-white">
-        <DrawerHeader className="border-b border-gray-100 pb-3">
-          <p
-            style={{ color: "#3B6095" }}
-            className="text-xs tracking-wider uppercase mb-1"
-          >
-            Find the perfect flight for your journey
-          </p>
-          {/* <DrawerTitle className="text-xl font-bold text-center text-gray-900">
-            Book Your Flight
-          </DrawerTitle> */}
-        </DrawerHeader>
-        <div className="px-4 pb-4 overflow-y-auto bg-gray-50">
-          <Card className="border-0 shadow-none bg-transparent mt-3">
-            <CardContent className="p-0">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Trip Type */}
-                <div className="bg-white p-4 border border-gray-100 rounded-lg">
-                  <Label className="text-sm font-semibold text-gray-900 mb-3 block">
-                    Trip Type
-                  </Label>
-                  <RadioGroup
-                    value={tripType}
-                    onValueChange={setTripType}
-                    className="flex gap-6"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="roundtrip"
-                        id="roundtrip"
-                        className="border-blue-600 text-blue-600"
-                      />
-                      <Label
-                        htmlFor="roundtrip"
-                        className="text-sm text-gray-700 font-medium cursor-pointer"
-                      >
-                        Round Trip
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="oneway"
-                        id="oneway"
-                        className="border-blue-600 text-blue-600"
-                      />
-                      <Label
-                        htmlFor="oneway"
-                        className="text-sm text-gray-700 font-medium cursor-pointer"
-                      >
-                        One Way
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                </div>
-
-                {/* From and To */}
-                <div className="bg-white p-4 border border-gray-100 rounded-lg">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="from"
-                        className="text-sm font-semibold text-gray-900"
-                      >
-                        From
-                      </Label>
-                      <AirportSelector
-                        value={fromAirport}
-                        onSelect={setFromAirport}
-                        placeholder="Select departure airport"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="to"
-                        className="text-sm font-semibold text-gray-900"
-                      >
-                        To
-                      </Label>
-                      <AirportSelector
-                        value={toAirport}
-                        onSelect={setToAirport}
-                        placeholder="Select destination airport"
-                      />
-                    </div>
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button className="btn-gold text-white rounded-full px-6 py-2 text-sm">
+            Get a Quote
+          </Button>
+        </DrawerTrigger>
+        <DrawerContent className="max-h-[95vh] bg-white">
+          <DrawerHeader className="border-b border-gray-100 pb-3">
+            <p
+              style={{ color: "#3B6095" }}
+              className="text-xs tracking-wider uppercase mb-1"
+            >
+              Find the perfect flight for your journey
+            </p>
+            <DrawerTitle className="hidden"></DrawerTitle>
+          </DrawerHeader>
+          <div className="px-4 pb-4 overflow-y-auto bg-gray-50">
+            <Card className="border-0 shadow-none bg-transparent mt-3">
+              <CardContent className="p-0">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Trip Type */}
+                  <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                    <Label className="text-sm font-semibold text-gray-900 mb-3 block">
+                      Trip Type
+                    </Label>
+                    <RadioGroup
+                      value={tripType}
+                      onValueChange={setTripType}
+                      className="flex gap-6"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value="roundtrip"
+                          id="roundtrip"
+                          className="border-blue-600 text-blue-600"
+                        />
+                        <Label
+                          htmlFor="roundtrip"
+                          className="text-sm text-gray-700 font-medium cursor-pointer"
+                        >
+                          Round Trip
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value="oneway"
+                          id="oneway"
+                          className="border-blue-600 text-blue-600"
+                        />
+                        <Label
+                          htmlFor="oneway"
+                          className="text-sm text-gray-700 font-medium cursor-pointer"
+                        >
+                          One Way
+                        </Label>
+                      </div>
+                    </RadioGroup>
                   </div>
-                </div>
 
-                {/* Dates */}
-                <div className="bg-white p-4 border border-gray-100 rounded-lg">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="departure"
-                        className="text-sm font-semibold text-gray-900"
-                      >
-                        Departure Date
-                      </Label>
-                      <DateSelector
-                        date={departureDate}
-                        onSelect={setDepartureDate}
-                        placeholder="Select departure date"
-                      />
-                    </div>
-                    {tripType === "roundtrip" && (
+                  {/* From and To */}
+                  <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label
-                          htmlFor="return"
+                          htmlFor="from"
                           className="text-sm font-semibold text-gray-900"
                         >
-                          Return Date
+                          From
+                        </Label>
+                        <AirportSelector
+                          value={fromAirport}
+                          onSelect={setFromAirport}
+                          placeholder="Select departure airport"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="to"
+                          className="text-sm font-semibold text-gray-900"
+                        >
+                          To
+                        </Label>
+                        <AirportSelector
+                          value={toAirport}
+                          onSelect={setToAirport}
+                          placeholder="Select destination airport"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dates */}
+                  <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="departure"
+                          className="text-sm font-semibold text-gray-900"
+                        >
+                          Departure Date
                         </Label>
                         <DateSelector
-                          date={returnDate}
-                          onSelect={setReturnDate}
-                          placeholder="Select return date"
+                          date={departureDate}
+                          onSelect={setDepartureDate}
+                          placeholder="Select departure date"
                         />
                       </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Passengers and Class */}
-                <div className="bg-white p-4 border border-gray-100 rounded-lg">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="passengers"
-                        className="text-sm font-semibold text-gray-900"
-                      >
-                        Passengers
-                      </Label>
-                      <PassengerSelector
-                        adults={adults}
-                        childPassengers={children}
-                        onAdultsChange={setAdults}
-                        onChildPassengersChange={setChildren}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="class"
-                        className="text-sm font-semibold text-gray-900"
-                      >
-                        Class
-                      </Label>
-                      <Select
-                        value={travelClass}
-                        onValueChange={setTravelClass}
-                      >
-                        <SelectTrigger className="bg-white border-gray-200 hover:bg-gray-50 h-10">
-                          <SelectValue placeholder="Select class" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="economy">Economy</SelectItem>
-                          <SelectItem value="premium-economy">
-                            Premium Economy
-                          </SelectItem>
-                          <SelectItem value="business">Business</SelectItem>
-                          <SelectItem value="first">First Class</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      {tripType === "roundtrip" && (
+                        <div className="space-y-2">
+                          <Label
+                            htmlFor="return"
+                            className="text-sm font-semibold text-gray-900"
+                          >
+                            Return Date
+                          </Label>
+                          <DateSelector
+                            date={returnDate}
+                            onSelect={setReturnDate}
+                            placeholder="Select return date"
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
 
-                {/* Personal Information */}
-                <div className="bg-white p-4 border border-gray-100 rounded-lg">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-3">
-                    Personal Information
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="space-y-1">
-                      <Label
-                        htmlFor="name"
-                        className="text-sm font-medium text-gray-900"
-                      >
-                        Full Name *
-                      </Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        placeholder="Enter your full name"
-                        value={passengerName}
-                        onChange={(e) => setPassengerName(e.target.value)}
-                        className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-10"
-                        required
-                      />
+                  {/* Passengers and Class */}
+                  <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="passengers"
+                          className="text-sm font-semibold text-gray-900"
+                        >
+                          Passengers
+                        </Label>
+                        <PassengerSelector
+                          adults={adults}
+                          childPassengers={children}
+                          onAdultsChange={setAdults}
+                          onChildPassengersChange={setChildren}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="class"
+                          className="text-sm font-semibold text-gray-900"
+                        >
+                          Class
+                        </Label>
+                        <Select
+                          value={travelClass}
+                          onValueChange={setTravelClass}
+                        >
+                          <SelectTrigger className="bg-white border-gray-200 hover:bg-gray-50 h-10">
+                            <SelectValue placeholder="Select class" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="economy">Economy</SelectItem>
+                            <SelectItem value="premium-economy">
+                              Premium Economy
+                            </SelectItem>
+                            <SelectItem value="business">Business</SelectItem>
+                            <SelectItem value="first">First Class</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
+                  </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {/* Personal Information */}
+                  <div className="bg-white p-4 border border-gray-100 rounded-lg">
+                    <h3 className="text-sm font-semibold text-gray-900 mb-3">
+                      Personal Information
+                    </h3>
+                    <div className="space-y-3">
                       <div className="space-y-1">
                         <Label
-                          htmlFor="email"
+                          htmlFor="name"
                           className="text-sm font-medium text-gray-900"
                         >
-                          Email Address *
+                          Full Name *
                         </Label>
                         <Input
-                          id="email"
-                          type="email"
-                          placeholder="Enter your email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          id="name"
+                          type="text"
+                          placeholder="Enter your full name"
+                          value={passengerName}
+                          onChange={(e) => setPassengerName(e.target.value)}
                           className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-10"
                           required
                         />
                       </div>
 
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className="space-y-1">
+                          <Label
+                            htmlFor="email"
+                            className="text-sm font-medium text-gray-900"
+                          >
+                            Email Address *
+                          </Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-10"
+                            required
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <Label
+                            htmlFor="mobile"
+                            className="text-sm font-medium text-gray-900"
+                          >
+                            Mobile Number *
+                          </Label>
+                          <Input
+                            id="mobile"
+                            type="tel"
+                            placeholder="Enter your mobile number"
+                            value={mobile}
+                            onChange={(e) => setMobile(e.target.value)}
+                            className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-10"
+                            required
+                          />
+                        </div>
+                      </div>
+
                       <div className="space-y-1">
                         <Label
-                          htmlFor="mobile"
+                          htmlFor="details"
                           className="text-sm font-medium text-gray-900"
                         >
-                          Mobile Number *
+                          Additional Details
                         </Label>
-                        <Input
-                          id="mobile"
-                          type="tel"
-                          placeholder="Enter your mobile number"
-                          value={mobile}
-                          onChange={(e) => setMobile(e.target.value)}
-                          className="bg-white border-gray-200 hover:border-gray-300 focus:border-blue-500 h-10"
-                          required
+                        <textarea
+                          id="details"
+                          placeholder="Any special requests, dietary requirements, or additional information..."
+                          value={additionalDetails}
+                          onChange={(e) => setAdditionalDetails(e.target.value)}
+                          className="w-full min-h-[70px] px-3 py-2 text-sm bg-white border border-gray-200 rounded-md hover:border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 resize-none"
+                          rows={3}
                         />
+                        <p className="text-xs text-gray-500">
+                          Optional - Let us know about any special requirements
+                        </p>
                       </div>
                     </div>
-
-                    <div className="space-y-1">
-                      <Label
-                        htmlFor="details"
-                        className="text-sm font-medium text-gray-900"
-                      >
-                        Additional Details
-                      </Label>
-                      <textarea
-                        id="details"
-                        placeholder="Any special requests, dietary requirements, or additional information..."
-                        value={additionalDetails}
-                        onChange={(e) => setAdditionalDetails(e.target.value)}
-                        className="w-full min-h-[70px] px-3 py-2 text-sm bg-white border border-gray-200 rounded-md hover:border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 resize-none"
-                        rows={3}
-                      />
-                      <p className="text-xs text-gray-500">
-                        Optional - Let us know about any special requirements
-                      </p>
-                    </div>
                   </div>
-                </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-3 pt-2">
-                  <Button
-                    type="submit"
-                    className="flex-1 btn-gold text-white rounded-full px-6 py-2 text-sm"
-                    size="default"
-                  >
-                    Search Flights
-                  </Button>
-                  <DrawerClose asChild>
+                  {/* Action Buttons */}
+                  <div className="flex gap-3 pt-2">
                     <Button
-                      variant="outline"
-                      className="px-6 py-2 text-sm rounded-full"
+                      type="submit"
+                      className="flex-1 btn-gold text-white rounded-full px-6 py-2 text-sm"
+                      size="default"
                     >
-                      Cancel
+                      Search Flights
                     </Button>
-                  </DrawerClose>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </DrawerContent>
-    </Drawer>
+                    <DrawerClose asChild>
+                      <Button
+                        variant="outline"
+                        className="px-6 py-2 text-sm rounded-full"
+                      >
+                        Cancel
+                      </Button>
+                    </DrawerClose>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </DrawerContent>
+      </Drawer>
     </section>
   );
 }

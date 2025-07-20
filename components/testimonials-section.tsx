@@ -1,6 +1,6 @@
 export default function TestimonialsSection() {
   return (
-    <section id="findus" className="bg-muted py-16 px-4 md:px-8 relative">
+    <section className="bg-muted py-16 px-4 md:px-8 relative">
       <div className="max-w-3xl mx-auto text-center relative">
            <p
             style={{ color: "#3B6095" }}

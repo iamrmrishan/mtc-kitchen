@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { Logo } from "@/components/logo";
-import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Facebook } from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative bg-black text-white py-16 px-4">
+    <footer className="relative bg-black text-white py-16 px-4">
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -61,25 +61,11 @@ export default function Footer() {
             <p className="font-semibold text-white">Follow Us</p>
             <div className="flex justify-center sm:justify-start gap-3 pt-1">
               <Link
-                href="#"
+                href="https://www.facebook.com/SkyrimTravelsLK"
                 aria-label="Facebook"
                 className="bg-white text-black rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-100 transition"
               >
                 <Facebook fill="black" className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                aria-label="Twitter"
-                className="bg-white text-black rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-100 transition"
-              >
-                <Twitter fill="black" className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                aria-label="Instagram"
-                className="bg-white text-black rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-100 transition"
-              >
-                <Instagram className="w-5 h-5" />
               </Link>
             </div>
           </div>
@@ -89,7 +75,8 @@ export default function Footer() {
         <div className="mt-12 border-t border-white/20 pt-6 text-xs text-muted-foreground">
           <p>Copyright Online SKYRIM TRAVELS 2025 - All rights reserved.</p>
           <p className="mt-1">
-            Responsive website design, Development & Hosting by iamrmrishan(Github).
+            Responsive website design, Development & Hosting by
+            iamrmrishan(Github).
           </p>
         </div>
       </div>

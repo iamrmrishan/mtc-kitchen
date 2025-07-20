@@ -25,9 +25,10 @@ export default function RootLayout({
       <body className={`${roboto.variable} antialiased`}>
         <HeroHeader></HeroHeader>
         {children}
-        <FooterSection></FooterSection>
+        <div id="contact">
+          <FooterSection></FooterSection>
+        </div>
       </body>
     </html>
   );
 }
-
